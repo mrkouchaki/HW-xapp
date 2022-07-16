@@ -23,11 +23,14 @@ from ._BaseManager import _BaseManager
 
 
 class A1PolicyManager(_BaseManager):
+    print('/////enter A1PolicyManager class in A1PolicyManager py file////')
 
     def __init__(self, rmr_xapp: RMRXapp):
+        print('////enter init in A1PolicyManager class/////')
         super().__init__(rmr_xapp)
 
     def startup(self):
+        print('///////enter startup in A1PolicyManager//////')
         policy_query = '{"policy_type_id":"' + str(Constants.HELLOWORLD_POLICY_ID) + '"}'
         self._rmr_xapp.rmr_send(policy_query.encode(), Constants.A1_POLICY_QUERY)
         self.logger.info("A1PolicyManager.startup:: Sent A1 policy query = " + policy_query)
