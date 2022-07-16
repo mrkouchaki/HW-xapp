@@ -48,10 +48,12 @@ class HWXapp:
         """
         rmr_xapp.logger.info("HWXapp.post_init :: post_init called")
         # self.sdl_alarm_mgr = SdlAlarmManager()
+        print('rmr_xapp=', rmr_xapp)
         sdl_mgr = SdlManager(rmr_xapp)
         sdl_mgr.sdlGetGnbList()
         #print('sdl_mgr.sdlGetGnbList()=', sdl_mgr.sdlGetGnbList())
         a1_mgr = A1PolicyManager(rmr_xapp)
+        print('a1_mgr = A1PolicyManager(rmr_xapp)=', a1_mgr)
         a1_mgr.startup()
         sub_mgr = SubscriptionManager(rmr_xapp)
         enb_list = sub_mgr.get_enb_list()
