@@ -17,6 +17,7 @@
 # ==================================================================================
 
 class Constants:
+    print('//////enter Contants class in utils////')
     A1_POLICY_QUERY = 20012
     HELLOWORLD_POLICY_ID = 2
     RIC_HEALTH_CHECK_REQ = 100
