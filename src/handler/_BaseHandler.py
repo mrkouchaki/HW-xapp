@@ -21,6 +21,7 @@ from abc import ABC, abstractmethod
 
 
 class _BaseHandler(ABC):
+    print('////////enter BaseHandler class in Basehandler//////')
     """
     Represents base Abstract Handler class
     Here initialize variables which will be common to all xapp
@@ -31,9 +32,12 @@ class _BaseHandler(ABC):
     """
 
     def __init__(self, rmr_xapp: RMRXapp, msgtype):
+        print('//////enter def init in Basehandler///////')
         self._rmr_xapp = rmr_xapp
+        print('self._rmr_xapp = rmr_xapp=', self._rmr_xapp)
         self.logger = self._rmr_xapp.logger
         self.msgtype = msgtype
+        print('self.msgtype=', self.msgtype )
         self._rmr_xapp.register_callback(self.request_handler, msgtype)
 
     @abstractmethod
