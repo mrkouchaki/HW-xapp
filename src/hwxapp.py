@@ -28,16 +28,21 @@ from mdclogpy import Logger
 
 
 class HWXapp:
-
+    print('///////enter HWXapp class///////')
     def __init__(self):
+        print('///////enter def init in hwxapp///////')
         fake_sdl = getenv("USE_FAKE_SDL", False)
+        print('fake_sdl=getenv(USE_FAKE_SDL, False)', fake_sdl)
+        #print('self._rmr_xapp=', self._rmr_xapp)
         self._rmr_xapp = RMRXapp(self._default_handler,
                                  config_handler=self._handle_config_change,
                                  rmr_port=4560,
                                  post_init=self._post_init,
                                  use_fake_sdl=bool(fake_sdl))
+        print('self._rmr_xapp=', self._rmr_xapp)
 
     def _post_init(self, rmr_xapp):
+        print('///////enter def _post_init in hwxapp///////')
         """
         Function that runs when xapp initialization is complete
         """
@@ -45,34 +50,43 @@ class HWXapp:
         # self.sdl_alarm_mgr = SdlAlarmManager()
         sdl_mgr = SdlManager(rmr_xapp)
         sdl_mgr.sdlGetGnbList()
+        #print('sdl_mgr.sdlGetGnbList()=', sdl_mgr.sdlGetGnbList())
         a1_mgr = A1PolicyManager(rmr_xapp)
         a1_mgr.startup()
         sub_mgr = SubscriptionManager(rmr_xapp)
         enb_list = sub_mgr.get_enb_list()
+        print('enb_list = sub_mgr.get_enb_list()=', enb_list)
         for enb in enb_list:
             sub_mgr.send_subscription_request(enb)
         gnb_list = sub_mgr.get_gnb_list()
+        print('gnb_list = sub_mgr.get_gnb_list()=', gnb_list)
         for gnb in gnb_list:
             sub_mgr.send_subscription_request(gnb)
         metric_mgr = MetricManager(rmr_xapp)
+        print('metric_mgr=MetricManager(rmr_xapp)=', metric_mgr)
         metric_mgr.send_metric()
 
     def _handle_config_change(self, rmr_xapp, config):
+        print('///////enter def _handle_config_change in hwxapp///////')
         """
         Function that runs at start and on every configuration file change.
         """
         rmr_xapp.logger.info("HWXapp.handle_config_change:: config: {}".format(config))
+        print('config in handle_config_change=', config)
         rmr_xapp.config = config  # No mutex required due to GIL
 
     def _default_handler(self, rmr_xapp, summary, sbuf):
+        print('///////enter def _default_handler in hwxapp///////')
         """
         Function that processes messages for which no handler is defined
         """
         rmr_xapp.logger.info("HWXapp.default_handler called for msg type = " +
                                    str(summary[rmr.RMR_MS_MSG_TYPE]))
+        print('str(summary[rmr.RMR_MS_MSG_TYPE]) in default_handler=', str(summary[rmr.RMR_MS_MSG_TYPE]))
         rmr_xapp.rmr_free(sbuf)
 
     def createHandlers(self):
+        print('///////enter def createHandlers in hwxapp///////')
         """
         Function that creates all the handlers for RMR Messages
         """
@@ -81,6 +95,7 @@ class HWXapp:
         SubscriptionHandler(self._rmr_xapp,Constants.SUBSCRIPTION_REQ)
 
     def start(self, thread=False):
+        print('///////enter def start in hwxapp///////')
         """
         This is a convenience function that allows this xapp to run in Docker
         for "real" (no thread, real SDL), but also easily modified for unit testing
@@ -90,6 +105,7 @@ class HWXapp:
         self._rmr_xapp.run(thread)
 
     def stop(self):
+        print('///////enter def stop in hwxapp///////')
         """
         can only be called if thread=True when started
         TODO: could we register a signal handler for Docker SIGTERM that calls this?
