@@ -20,9 +20,11 @@ from .hwxapp import HWXapp
 
 
 def launchXapp():
+    print('////enter def launchxapp() in main py////')
     hwxapp = HWXapp()
     hwxapp.start()
 
 
 if __name__ == "__main__":
+    print('////enter if __name__==main in main py////')
     launchXapp()
