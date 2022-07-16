@@ -22,18 +22,24 @@ from ._BaseManager import _BaseManager
 
 
 class SdlManager(_BaseManager):
+    print('/////SdlManager class in SdlManager py////')
 
     __namespace = "e2Manager"
 
     def __init__(self, rmr_xapp: RMRXapp):
+        print('////enter def init in SdlManager////')
         super().__init__(rmr_xapp)
 
     def sdlGetGnbList(self):
+        print('/////enter sdlGetGnbList in SdlManager//////')
         gnblist = self._rmr_xapp.sdl_find_and_get(self.__namespace, "GNB")
+        print('gnblist = self._rmr_xapp.sdl_find_and_get(self.__namespace, GNB)=', gnblist)
         self.logger.info("SdlManager.sdlGetGnbList:: Processed request: {}".format(json.dumps(gnblist)))
 
     def sdlGetEnbList(self):
+        print('/////enter sdlGetEnbList in SdlManager//////')
         enblist = self._rmr_xapp.sdl_find_and_get(self.__namespace, "ENB")
+        print('enblist = self._rmr_xapp.sdl_find_and_get(self.__namespace, ENB)=', enblist)
         self.logger.info("SdlManager.sdlGetGnbList:: Handler processed request: {}".format(json.dumps(enblist)))
 
 
