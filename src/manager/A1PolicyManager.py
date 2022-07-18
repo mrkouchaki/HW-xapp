@@ -32,6 +32,8 @@ class A1PolicyManager(_BaseManager):
     def startup(self):
         print('///////enter startup in A1PolicyManager//////')
         policy_query = '{"policy_type_id":"' + str(Constants.HELLOWORLD_POLICY_ID) + '"}'
+        print('policy_query=', policy_query)
+        print('Constants.A1_POLICY_QUERY=', Constants.A1_POLICY_QUERY)
         self._rmr_xapp.rmr_send(policy_query.encode(), Constants.A1_POLICY_QUERY)
         self.logger.info("A1PolicyManager.startup:: Sent A1 policy query = " + policy_query)
 
