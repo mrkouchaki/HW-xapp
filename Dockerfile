@@ -36,7 +36,7 @@ RUN pip install /tmp
 
 # Env - TODO- Configmap
 ENV PYTHONUNBUFFERED 1
-ENV CONFIG_FILE=/tmp/init/config-file.json
+#ENV CONFIG_FILE=/tmp/init/config-file.json
 
 # For Default DB connection, modify for resp kubernetes env
 ENV DBAAS_SERVICE_PORT=6379
