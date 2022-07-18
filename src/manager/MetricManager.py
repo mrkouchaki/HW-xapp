@@ -23,17 +23,24 @@ from datetime import datetime
 
 # noinspection PyProtectedMember,PyProtectedMember
 class MetricManager(_BaseManager):
+    print('//////enter class MetricManager(_BaseManager): in MetricManager////')
 
     def __init__(self, rmr_xapp: RMRXapp):
+        print('/////enter def init in class MetricManager////')
         super().__init__(rmr_xapp)
         self.metric_mgr = metric.MetricsManager(self._rmr_xapp._mrc, "system-time", "hw-python")
+        print('self.metric_mgr =', self.metric_mgr )
 
     def send_metric(self):
+        print('/////enter def send_metric in class MetricManager////')
 
         # datetime object containing current date and time
         now = datetime.now()
+        print('now = datetime.now()=', now)
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+        print('dt_string = now.strftime---=', dt_string)
         metric_list = [dt_string]
+        print('metric_list = [dt_string]=', metric_list)
         self.logger.info("MetricManager:: metric time {}".format(metric_list))
         self.metric_mgr.send_metrics(metric_list)
         self.logger.info("MetricManager:: metric sent")
