@@ -21,6 +21,7 @@ from abc import ABC
 
 
 class _BaseManager(ABC):
+    print('////////class _BaseManager(ABC)://////')
     """
     Represents base Manager Abstract class
     Here initialize variables which will be common to all xapp
