@@ -34,7 +34,7 @@ class A1PolicyHandler(_BaseHandler):
         self._rmr_xapp.rmr_free(sbuf)
         print('self._rmr_xapp= _rmr_xapp.rmr_free(sbuf)=', self._rmr_xapp)
         try:
-            print('/////enter try in request_handler////)
+            print('/////enter try in request_handler////')
             req = json.loads(summary[rmr.RMR_MS_PAYLOAD])  # input should be a json encoded as bytes
             print('req = json.loads(summary[rmr.RMR_MS_PAYLOAD])input should be a json encoded as bytes=', req)
             self.logger.debug("A1PolicyHandler.resp_handler:: Handler processing request")
@@ -71,7 +71,7 @@ class A1PolicyHandler(_BaseHandler):
         print('self.logger.info("A1PolicyHandler.resp_handler:: Response sent: {}".format(resp))=', self.logger)
 
     def verifyPolicy(self, req: dict):
-        print('////////enter def verifyPolicy(self, req: dict): in A1PolicyHandler/////)
+        print('////////enter def verifyPolicy(self, req: dict): in A1PolicyHandler/////')
         print('req: dict)=', req)
         for i in ["policy_type_id", "operation", "policy_instance_id"]:
             print('i=', i)
@@ -82,7 +82,7 @@ class A1PolicyHandler(_BaseHandler):
         return True
 
     def buildPolicyResp(self, req: dict):
-        print('////////enter def def buildPolicyResp(self, req: dict): in A1PolicyHandler/////)
+        print('////////enter def def buildPolicyResp(self, req: dict): in A1PolicyHandler/////')
         print('req: dict)=', req)
         req["handler_id"] = self._rmr_xapp.config["xapp_name"]
         print('req[handler_id]= = self._rmr_xapp.config[xapp_name]=', req["handler_id"])
