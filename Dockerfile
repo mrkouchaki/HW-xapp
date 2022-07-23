@@ -39,8 +39,8 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONIOENCODING=UTF-8
 #ENV CONFIG_FILE=/tmp/init/config-file.json
 
-RUN cd /opt/route
-WORKDIR /opt/route
+# RUN cd /opt/route
+# WORKDIR /opt/route
 
 # For Default DB connection, modify for resp kubernetes env
 ENV DBAAS_SERVICE_PORT=6379
