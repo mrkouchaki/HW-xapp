@@ -35,7 +35,8 @@ COPY init/ /tmp/init
 RUN pip install /tmp
 
 # Env - TODO- Configmap
-ENV PYTHONUNBUFFERED=0
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONIOENCODING=UTF-8
 #ENV CONFIG_FILE=/tmp/init/config-file.json
 
 # For Default DB connection, modify for resp kubernetes env
